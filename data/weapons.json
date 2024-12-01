@@ -1,0 +1,16 @@
+{
+  "weapons": [
+    {
+      "name": "Riffle_sci-fi",
+      "icon": "blaster-x.png",
+      "range": 50,
+      "fireRate": "10"
+    },
+    {
+      "name": "Plasma Rifle",
+      "icon": "plasma-rifle.png",
+      "range": 700,
+      "fireRate": "Medium"
+    }
+  ]
+}
