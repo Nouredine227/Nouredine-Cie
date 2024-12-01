@@ -1,24 +1,36 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Armes</title>
+    <title>Armes - Niger Game</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- Fond animé avec étoiles -->
+    <div class="stars"></div>
+
+    <!-- En-tête -->
     <header>
-        <h1>Liste des Armes</h1>
+        <h1>Armes Disponibles</h1>
         <nav>
             <a href="index.html">Accueil</a>
-            <a href="jeux.html">Mes Jeux</a>
-            <a href="updates.html">Mises à jour</a>
+            <a href="weapons.html" class="active">Armes</a>
+            <a href="games.html">Jeux</a>
         </nav>
     </header>
+
+    <!-- Contenu principal -->
     <main>
-        <input type="text" id="searchBar" placeholder="Rechercher une arme...">
-        <div id="weaponList"></div>
+        <section>
+            <h2>Liste des Armes</h2>
+            <div id="weaponsList">
+                <!-- Les armes seront affichées ici via JavaScript -->
+            </div>
+        </section>
     </main>
+
+    <!-- Script JavaScript -->
     <script src="js/weapons.js"></script>
 </body>
 </html>
