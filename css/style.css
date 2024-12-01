@@ -5,55 +5,11 @@ body {
     padding: 0;
     background-color: #121212;
     color: #fff;
-    overflow-x: hidden;
-}
-
-/* Conteneur pour les étoiles animées */
-.stars {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Derrière tout le contenu */
-    overflow: hidden;
-    background: transparent;
-}
-
-/* Petites étoiles */
-.stars::before, .stars::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(2px 2px at 50% 50%, #fff, transparent 80%);
-    background-size: 1px 1px;
-    opacity: 0.5;
-    animation: moveStars 100s linear infinite;
-}
-
-/* Deuxième couche d'étoiles pour profondeur */
-.stars::after {
-    opacity: 0.3;
-    background-size: 2px 2px;
-    animation-duration: 150s;
-}
-
-/* Animation des étoiles en mouvement */
-@keyframes moveStars {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(-50%);
-    }
 }
 
 /* Style pour l'en-tête */
 header {
-    background-color: rgba(26, 26, 26, 0.9);
+    background-color: #1a1a1a;
     padding: 10px 20px;
     text-align: center;
 }
@@ -61,7 +17,6 @@ header {
 header h1 {
     margin: 0;
     font-size: 2rem;
-    color: #fff;
 }
 
 header nav {
