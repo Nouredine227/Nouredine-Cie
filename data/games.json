@@ -1,10 +1,14 @@
 {
-  "games": [
-    {
-      "name": "Soldat_N°123456",
-      "icon": "Screenshot03.jpg",
-      "description": "Un jeu de tir. Vous incarnez un soldats robots des agents d'élite de la League Anti Evil, accomplisez les missions et sauvez le monde.",
-      "link": "https://game-link.com"
-    }
-  ]
+    "games": [
+        {
+            "name": "Space Defender",
+            "description": "Un jeu de tir spatial avec des graphismes futuristes.",
+            "image": "assets/images/space_defender.jpg"
+        },
+        {
+            "name": "Robot Wars",
+            "description": "Combattez des robots dans une arène futuriste.",
+            "image": "assets/images/robot_wars.jpg"
+        }
+    ]
 }
