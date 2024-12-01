@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Armes - Mes Jeux Vidéo</title>
-  <link rel="stylesheet" href="styles/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armes</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>Armes Disponibles</h1>
-    <a href="index.html">Retour à l'Accueil</a>
-  </header>
-  <section id="weapons">
-    <!-- Les armes seront affichées ici -->
-  </section>
-  <script src="scripts/weapons.js"></script>
+    <header>
+        <h1>Liste des Armes</h1>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="jeux.html">Mes Jeux</a>
+            <a href="updates.html">Mises à jour</a>
+        </nav>
+    </header>
+    <main>
+        <input type="text" id="searchBar" placeholder="Rechercher une arme...">
+        <select id="categoryFilter">
+            <option value="all">Toutes les catégories</option>
+            <option value="rifle">Fusils</option>
+            <option value="pistol">Pistolets</option>
+        </select>
+        <div id="weaponList"></div>
+    </main>
+    <script src="js/weapons.js"></script>
 </body>
 </html>
