@@ -1,14 +1,22 @@
 {
     "games": [
         {
-            "name": "Space Defender",
-            "description": "Un jeu de tir spatial avec des graphismes futuristes.",
-            "image": "assets/images/space_defender.jpg"
+            "name": "Space Invaders",
+            "icon": "space_invaders.png",
+            "description": "Un jeu rétro où vous défendez la terre contre des envahisseurs.",
+            "downloadLink": "https://example.com/downloads/space_invaders.zip"
         },
         {
-            "name": "Robot Wars",
-            "description": "Combattez des robots dans une arène futuriste.",
-            "image": "assets/images/robot_wars.jpg"
+            "name": "Future Racer",
+            "icon": "future_racer.png",
+            "description": "Une course futuriste dans l'espace !",
+            "downloadLink": "https://example.com/downloads/future_racer.zip"
+        },
+        {
+            "name": "Alien Shooter",
+            "icon": "alien_shooter.png",
+            "description": "Combattez des vagues d'aliens dans ce jeu d'action intense.",
+            "downloadLink": "https://example.com/downloads/alien_shooter.zip"
         }
     ]
 }
