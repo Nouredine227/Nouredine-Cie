@@ -1,0 +1,22 @@
+{
+    "weapons": [
+        {
+            "name": "Pistolet",
+            "icon": "pistol.png",
+            "range": 50,
+            "rate": 300
+        },
+        {
+            "name": "Fusil d'assaut",
+            "icon": "assault_rifle.png",
+            "range": 300,
+            "rate": 700
+        },
+        {
+            "name": "Sniper",
+            "icon": "sniper.png",
+            "range": 1000,
+            "rate": 50
+        }
+    ]
+}
