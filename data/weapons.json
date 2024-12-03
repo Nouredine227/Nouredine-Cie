@@ -1,6 +1,0 @@
-{
-    "weapons": [
-        { "name": "Blaster X", "range": 500, "fireRate": 3 },
-        { "name": "Plasma Rifle", "range": 300, "fireRate": 5 }
-    ]
-}
