@@ -3,29 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Jeux</title>
     <link rel="stylesheet" href="css/style.css">
-    <title>Jeux</title>
 </head>
 <body>
     <nav>
         <a href="index.html">Accueil</a>
     </nav>
+
     <section>
-        <h1>Jeux Créés</h1>
-        <ul id="game-list">
-            <li>Mon premier jeu</li>
-            <li>Mon deuxième jeu</li>
-        </ul>
-        <h2>Commentaires</h2>
-        <form id="comment-form">
-            <label for="username">Nom :</label>
-            <input type="text" id="username" required>
-            <label for="comment">Commentaire :</label>
-            <textarea id="comment" required></textarea>
-            <button type="submit">Envoyer</button>
-        </form>
-        <ul id="comment-list"></ul>
+        <h1>Mes Jeux</h1>
+        <div id="game-list" class="content-grid"></div>
     </section>
+
     <script src="js/games.js"></script>
 </body>
 </html>
