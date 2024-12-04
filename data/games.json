@@ -2,7 +2,7 @@
     "games": [
         {
             "name": "Space Invaders",
-            "icon": "assets/images/assault_riffle.jpg",
+            "icon": "assets/images/assaul_riffle.jpg",
             "description": "Un jeu rétro où vous défendez la terre contre des envahisseurs.",
             "downloadLink": "https://www.shutterstock.com/fr/image-illustration/3d-illustration-scifi-futuristic-weapon-isolated-1598648563"
         },
