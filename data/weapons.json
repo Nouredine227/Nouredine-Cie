@@ -8,7 +8,7 @@
         },
         {
             "name": "Fusil d'assaut",
-            "icon": "assaul_riffle.png",
+            "icon": "assets/images/assaul_riffle.jpg",
             "range": 300,
             "rate": 700
         },
