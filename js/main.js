@@ -1,9 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Bienvenue sur le site !');
+// Gestion du mode sombre/clair
+const toggleThemeButton = document.querySelector(".toggle-theme");
+toggleThemeButton.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    localStorage.setItem(
+        "theme",
+        document.body.classList.contains("dark-mode") ? "dark" : "light"
+    );
+});
 
-    // Animation d'arrière-plan
-    const background = document.getElementById('background');
-    setInterval(() => {
-        background.style.backgroundPosition = `${Math.random() * 1000}px ${Math.random() * 1000}px`;
-    }, 1000);
+// Charger le thème choisi
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
 });
