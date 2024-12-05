@@ -3,14 +3,14 @@
         {
             "name": "Jeu 1",
             "platform": "Android",
-            "icon": "assault_riffle.jpg",
+            "icon": "assaul_riffle.jpg",
             "description": "Description du jeu 1",
             "downloadLink": "https://example.com/game1"
         },
         {
             "name": "Jeu 2",
             "platform": "PC",
-            "icon": "game2.png",
+            "icon": "assaut_heavy.jpg",
             "description": "Description du jeu 2",
             "downloadLink": "https://example.com/game2"
         }
