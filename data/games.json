@@ -10,7 +10,7 @@
         {
             "name": "Jeu 2",
             "platform": "PC",
-            "icon": "assaut_heavy.jpg",
+            "icon": "assault_heavy.jpg",
             "description": "Description du jeu 2",
             "downloadLink": "https://example.com/game2"
         }
