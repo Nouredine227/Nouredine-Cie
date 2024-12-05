@@ -3,22 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>Accueil</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div id="background"></div>
     <nav>
+        <a href="index.html">Accueil</a>
         <a href="weapons.html">Armes</a>
         <a href="games.html">Jeux</a>
-        <a href="audio.html">Audios</a>
         <a href="contact.html">Contact</a>
-        <a href="help.html">Aide</a>
+        <a href="history.html">Historique</a>
     </nav>
+
     <section>
-        <h1>Bienvenue sur mon site</h1>
-        <video src="https://m.youtube.com/watch?v=pGRvbe_ni5k" controls autoplay></video>
+        <h1>Bienvenue sur le site officiel</h1>
+        <p>Explorez nos armes, jeux et plus encore.</p>
+        <video controls autoplay loop>
+            <source src="assets/video/intro.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéo.
+        </video>
     </section>
+
+    <button class="toggle-theme">Mode sombre/clair</button>
+
     <script src="js/main.js"></script>
 </body>
 </html>
