@@ -3,17 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>Armes</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <nav>
         <a href="index.html">Accueil</a>
     </nav>
+
     <section>
-        <h1>Armes Disponibles</h1>
+        <h1>Armes disponibles</h1>
+        <input type="text" id="weapon-search" placeholder="Rechercher une arme">
+        <select id="weapon-filter">
+            <option value="all">Tous</option>
+            <option value="short">Courte portée</option>
+            <option value="medium">Moyenne portée</option>
+            <option value="long">Longue portée</option>
+        </select>
         <div id="weapon-list"></div>
+        <div id="pagination-weapons" class="pagination"></div>
     </section>
+
     <script src="js/weapons.js"></script>
 </body>
 </html>
