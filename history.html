@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historique des téléchargements</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Accueil</a>
+    </nav>
+
+    <section>
+        <h1>Historique des téléchargements</h1>
+        <ul id="history-list"></ul>
+    </section>
+
+    <script>
+        const historyList = document.getElementById('history-list');
+        const history = JSON.parse(localStorage.getItem('downloadHistory')) || [];
+        history.forEach(item => {
+            const listItem = document.createElement('li');
+            listItem.textContent = item;
+            historyList.appendChild(listItem);
+        });
+    </script>
+</body>
+</html>
