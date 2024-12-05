@@ -1,22 +1,18 @@
 {
     "games": [
         {
-            "name": "Space Invaders",
-            "icon": "assets/images/assaul_riffle.jpg",
-            "description": "Un jeu rétro où vous défendez la terre contre des envahisseurs.",
-            "downloadLink": "https://www.shutterstock.com/fr/image-illustration/3d-illustration-scifi-futuristic-weapon-isolated-1598648563"
+            "name": "Jeu 1",
+            "platform": "Android",
+            "icon": "assault_riffle.jpg",
+            "description": "Description du jeu 1",
+            "downloadLink": "https://example.com/game1"
         },
         {
-            "name": "Future Racer",
-            "icon": "future_racer.png",
-            "description": "Une course futuriste dans l'espace !",
-            "downloadLink": "https://example.com/downloads/future_racer.zip"
-        },
-        {
-            "name": "Alien Shooter",
-            "icon": "alien_shooter.png",
-            "description": "Combattez des vagues d'aliens dans ce jeu d'action intense.",
-            "downloadLink": "https://example.com/downloads/alien_shooter.zip"
+            "name": "Jeu 2",
+            "platform": "PC",
+            "icon": "game2.png",
+            "description": "Description du jeu 2",
+            "downloadLink": "https://example.com/game2"
         }
     ]
 }
