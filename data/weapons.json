@@ -1,22 +1,12 @@
 {
     "weapons": [
         {
-            "name": "Pistolet",
-            "icon": "pistol.png",
-            "range": 50,
-            "rate": 300
-        },
-        {
-            "name": "Fusil d'assaut",
-            "icon": "assets/images/assaul_riffle.jpg",
-            "range": 300,
-            "rate": 700
-        },
-        {
-            "name": "Sniper",
-            "icon": "sniper.png",
-            "range": 1000,
-            "rate": 50
+            "name": "Fusil de sniper",
+            "range": "long",
+            "fireRate": "Lent",
+            "icon": "assault_riffle.jpg",
+            "description": "Une arme puissante pour les combats à longue distance.",
+            "downloadLink": "https://example.com/sniper"
         }
     ]
 }
