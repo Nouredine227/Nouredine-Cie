@@ -4,7 +4,7 @@
             "name": "Fusil de sniper",
             "range": "long",
             "fireRate": "Lent",
-            "icon": "assaul_riffle.jpg",
+            "icon": "assault_heavy.jpg",
             "description": "Une arme puissante pour les combats à longue distance.",
             "downloadLink": "https://example.com/sniper"
         }
