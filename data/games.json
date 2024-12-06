@@ -1,18 +1,12 @@
 {
     "games": [
         {
-            "name": "Jeu 1",
-            "platform": "Android",
-            "icon": "assaul_riffle.jpg",
-            "description": "Description du jeu 1",
-            "downloadLink": "https://example.com/game1"
-        },
-        {
-            "name": "Jeu 2",
+            "name": "Store plublisher",
             "platform": "PC",
-            "icon": "assault_heavy.jpg",
-            "description": "Description du jeu 2",
-            "downloadLink": "https://example.com/game2"
+            "icon": "assaul_riffle.jpg",
+            "description": "C'est un application de notre conception dans laquel les utilisateurs peuvent publier leurs produits gratuits pour se faire connaître du public (vous devez publier votre application sur internet et lorsque vous voulez l'ajouter vous devez juste mettre le lien derect du fichier et son format).
+            En gros elle contient juste des liens vous publier quelques part et vous ajoutez le lien direct du fichier.",
+            "downloadLink": "https://github.com/Nouredine227/Application_Store.git"
         }
     ]
 }
