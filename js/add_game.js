@@ -2,7 +2,7 @@ const form = document.getElementById("gameForm");
 const responseDiv = document.getElementById("response");
 
 // Configurer vos informations GitHub
-const githubToken = "YOUR_GITHUB_PERSONAL_ACCESS_TOKEN";
+const githubToken = "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";
 const repoOwner = "Nouredine227";
 const repoName = "Nouredine-Cie";
 const branchName = "main";
