@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un Nouveau Jeu</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark-mode">
+    <header>
+        <nav class="nav-bar">
+            <a href="index.html">Accueil</a>
+            <a href="games.html">Liste des Jeux</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="add-game-container">
+            <h1>Ajouter un Nouveau Jeu</h1>
+            <form id="gameForm" class="add-game-form">
+                <div class="form-group">
+                    <label for="name">Nom du jeu :</label>
+                    <input type="text" id="name" name="name" placeholder="Entrez le nom du jeu" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="platform">Plateforme :</label>
+                    <select id="platform" name="platform" required>
+                        <option value="Android">Android</option>
+                        <option value="PC">PC</option>
+                        <option value="PS">PS</option>
+                        <option value="ISO">ISO</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description :</label>
+                    <textarea id="description" name="description" placeholder="Description du jeu..." rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="url">URL de téléchargement :</label>
+                    <input type="url" id="url" name="url" placeholder="https://example.com/download" required>
+                </div>
+
+                <button type="submit" class="submit-button">Publier le Jeu</button>
+            </form>
+            <div id="response" class="response-message"></div>
+        </section>
+    </main>
+
+    <script src="js/add_game.js"></script>
+</body>
+</html>
