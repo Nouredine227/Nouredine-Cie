@@ -1,3 +1,7 @@
+function encodeBase64Unicode(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
 const form = document.getElementById("gameForm");
 const responseDiv = document.getElementById("response");
 
@@ -53,7 +57,7 @@ form.addEventListener("submit", async (event) => {
 // Fonction pour uploader un fichier sur GitHub
 async function uploadToGitHub(filePath, file) {
     const content = await file.text();
-    const base64Content = btoa(content);
+    const base64Content = encodeBase64Unicode(content);
 
     const response = await fetch(
         `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`,
@@ -109,7 +113,7 @@ async function updateJsonFile(newGame) {
         games.push(newGame); // Ajout d'un nouveau jeu
     }
 
-    const updatedContent = btoa(JSON.stringify(games, null, 2));
+    const updatedContent = encodeBase64Unicode(JSON.stringify(games, null, 2));
 
     const updateResponse = await fetch(
         `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${jsonPath}`,
