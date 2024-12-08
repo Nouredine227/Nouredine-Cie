@@ -7,15 +7,21 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="add-game-container">
-    <h1 class="title">Ajouter un Nouveau Jeu</h1>
-    <form id="add-game-form" class="add-game-form">
-      <div class="form-group">
+  <header>
+    <div class="header-container">
+      <h1>Ajouter un Nouveau Jeu</h1>
+      <nav>
+        <a href="index.html">Retour à l'Accueil</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <form id="add-game-form" class="game-form">
         <label for="game-name">Nom du Jeu :</label>
         <input type="text" id="game-name" placeholder="Nom du jeu" required>
-      </div>
 
-      <div class="form-group">
         <label for="game-platform">Plateforme :</label>
         <select id="game-platform" required>
           <option value="Android">Android</option>
@@ -23,26 +29,24 @@
           <option value="PS">PlayStation</option>
           <option value="ISO">ISO</option>
         </select>
-      </div>
 
-      <div class="form-group">
         <label for="game-description">Description :</label>
         <textarea id="game-description" placeholder="Description du jeu" required></textarea>
-      </div>
 
-      <div class="form-group">
         <label for="game-download-url">URL de Téléchargement :</label>
         <input type="url" id="game-download-url" placeholder="Lien de téléchargement" required>
-      </div>
 
-      <div class="form-group">
         <label for="game-icon">Icône du Jeu :</label>
         <input type="file" id="game-icon" accept="image/*" required>
-      </div>
 
-      <button type="button" class="btn-submit" onclick="addGame()">Publier</button>
-    </form>
-  </div>
+        <button type="button" class="btn-submit" onclick="addGame()">Publier</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Votre Site de Jeux - Tous droits réservés</p>
+  </footer>
 
   <script src="js/add_game.js"></script>
 </body>
