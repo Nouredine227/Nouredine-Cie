@@ -1,60 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajouter un Nouveau Jeu</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="dark-mode">
-    <header>
-        <nav class="nav-bar">
-            <a href="index.html">Accueil</a>
-            <a href="games.html">Liste des Jeux</a>
-        </nav>
-    </header>
+async function addGame() {
+  const name = document.getElementById("game-name").value.trim();
+  const platform = document.getElementById("game-platform").value.trim();
+  const description = document.getElementById("game-description").value.trim();
+  const downloadUrl = document.getElementById("game-download-url").value.trim();
+  const iconFile = document.getElementById("game-icon").files[0];
 
-    <main>
-        <section class="add-game-container">
-            <h1>Ajouter un Nouveau Jeu</h1>
-            <form id="gameForm" class="add-game-form">
-                <div class="form-group">
-                    <label for="name">Nom du jeu :</label>
-                    <input type="text" id="name" name="name" placeholder="Entrez le nom du jeu" required>
-                </div>
+  if (!name || !platform || !description || !downloadUrl || !iconFile) {
+    alert("Veuillez remplir tous les champs !");
+    return;
+  }
 
-                <div class="form-group">
-                    <label for="platform">Plateforme :</label>
-                    <select id="platform" name="platform" required>
-                        <option value="Android">Android</option>
-                        <option value="PC">PC</option>
-                        <option value="PS">PS</option>
-                        <option value="ISO">ISO</option>
-                    </select>
-                </div>
+  // 1. Renommer l'icône
+  const iconName = `${name.replace(/\s+/g, "_")}.${iconFile.name.split('.').pop()}`; // Nom formaté
+  const iconPath = `assets/images/${iconName}`;
 
-                <div class="form-group">
-                    <label for="description">Description :</label>
-                    <textarea id="description" name="description" placeholder="Description du jeu..." rows="4" required></textarea>
-                </div>
+  try {
+    // 2. Télécharger l'icône sur GitHub
+    const iconBase64 = await fileToBase64(iconFile);
+    await uploadToGitHub(iconPath, iconBase64);
 
-                <div class="form-group">
-                    <label for="url">URL de téléchargement :</label>
-                    <input type="url" id="url" name="url" placeholder="https://example.com/download" required>
-                </div>
+    // 3. Récupérer le fichier JSON depuis GitHub
+    const gamesJson = await getJsonFromGitHub("data/games.json");
+    const existingGame = gamesJson.find(
+      (game) => game.name === name && game.platform === platform
+    );
 
-               <!-- Les autres champs existants... -->
-                <div class="form-group">
-                    <label for="icon">Icône du jeu :</label>
-                    <input type="file" id="icon" name="icon" accept="image/*" required>
-                </div>
+    if (existingGame) {
+      // Mise à jour du jeu existant
+      existingGame.description = description;
+      existingGame.download_url = downloadUrl;
+      existingGame.icon_url = iconPath;
+    } else {
+      // Ajouter un nouveau jeu
+      gamesJson.push({
+        name,
+        platform,
+        description,
+        download_url: downloadUrl,
+        icon_url: iconPath,
+      });
+    }
 
-                <button type="submit" class="submit-button">Publier le Jeu</button>
-            </form>
-            <div id="response" class="response-message"></div>
-        </section>
-    </main>
+    // 4. Sauvegarder le fichier JSON mis à jour sur GitHub
+    await uploadToGitHub("data/games.json", JSON.stringify(gamesJson, null, 2));
 
-    <script src="js/add_game.js"></script>
-</body>
-</html>
+    alert("Le jeu a été ajouté avec succès !");
+  } catch (error) {
+    console.error("Erreur lors de l'ajout du jeu :", error);
+    alert(`Une erreur s'est produite : ${error.message}`);
+  }
+}
+
+// Fonction pour convertir un fichier en Base64
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+}
+
+// Fonction pour récupérer un fichier JSON depuis GitHub
+async function getJsonFromGitHub(path) {
+  const url = `https://api.github.com/repos/{your_username}/{your_repo}/contents/${path}`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${your_github_token}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Impossible de récupérer le fichier JSON.");
+  }
+
+  const data = await response.json();
+  return JSON.parse(atob(data.content));
+}
+
+// Fonction pour télécharger un fichier sur GitHub
+async function uploadToGitHub(path, content) {
+  const url = `https://api.github.com/repos/{your_username}/{your_repo}/contents/${path}`;
+  const existingFile = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${your_github_token}`,
+    },
+  });
+
+  let sha = null;
+  if (existingFile.ok) {
+    const fileData = await existingFile.json();
+    sha = fileData.sha;
+  }
+
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${your_github_token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: `Add or update ${path}`,
+      content: btoa(content),
+      sha: sha || undefined,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Impossible de télécharger le fichier sur GitHub.");
+  }
+}
