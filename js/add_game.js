@@ -1,141 +1,112 @@
-function encodeBase64Unicode(str) {
-  return btoa(unescape(encodeURIComponent(str)));
-}
+async function addGame() {
+  const name = document.getElementById("game-name").value.trim();
+  const platform = document.getElementById("game-platform").value.trim();
+  const description = document.getElementById("game-description").value.trim();
+  const downloadUrl = document.getElementById("game-download-url").value.trim();
+  const iconFile = document.getElementById("game-icon").files[0];
 
-const form = document.getElementById("gameForm");
-const responseDiv = document.getElementById("response");
+  if (!name || !platform || !description || !downloadUrl || !iconFile) {
+    alert("Veuillez remplir tous les champs !");
+    return;
+  }
 
-// Configurer vos informations GitHub
-const githubToken = "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";
-const repoOwner = "Nouredine227";
-const repoName = "Nouredine-Cie";
-const branchName = "main";
-const iconsPath = "assets/images/";
-const jsonPath = "data/games.json";
+  // 1. Renommer l'icône
+  const iconName = `${name.replace(/\s+/g, "_")}.${iconFile.name.split('.').pop()}`; // Nom formaté
+  const iconPath = `assets/images/${iconName}`;
 
-form.addEventListener("submit", async (event) => {
-    event.preventDefault();
-    responseDiv.textContent = "Publication en cours...";
+  try {
+    // 2. Télécharger l'icône sur GitHub
+    const iconBase64 = await fileToBase64(iconFile);
+    await uploadToGitHub(iconPath, iconBase64);
 
-    const formData = new FormData(form);
-    const iconFile = formData.get("icon");
-    const gameName = formData.get("name");
-
-    try {
-        // 1. Uploader l'icône dans le dépôt
-        const iconResponse = await uploadToGitHub(
-            `${iconsPath}${gameName.replace(/\s+/g, "_")}.${getFileExtension(iconFile.name)}`,
-            iconFile
-        );
-
-        if (!iconResponse) {
-            responseDiv.textContent = "Erreur lors de l'upload de l'icône.";
-            return;
-        }
-
-        // 2. Ajouter les données du jeu dans le fichier JSON
-        const newGame = {
-            name: gameName,
-            platform: formData.get("platform"),
-            description: formData.get("description"),
-            download_url: formData.get("url"),
-            icon_url: iconResponse.download_url,
-        };
-
-        const jsonUpdated = await updateJsonFile(newGame);
-        if (jsonUpdated) {
-            responseDiv.textContent = "Jeu publié avec succès !";
-            form.reset();
-        } else {
-            responseDiv.textContent = "Erreur lors de la mise à jour du fichier JSON.";
-        }
-    } catch (error) {
-        responseDiv.textContent = `Une erreur s'est produite : ${error.message}`;
-    }
-});
-
-// Fonction pour uploader un fichier sur GitHub
-async function uploadToGitHub(filePath, file) {
-    const content = await file.text();
-    const base64Content = encodeBase64Unicode(content);
-
-    const response = await fetch(
-        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`,
-        {
-            method: "PUT",
-            headers: {
-                Authorization: `token ${githubToken}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                message: `Ajout de l'icône : ${filePath}`,
-                content: base64Content,
-                branch: branchName,
-            }),
-        }
-    );
-
-    if (response.ok) {
-        return response.json();
-    } else {
-        console.error("Erreur d'upload GitHub", response.statusText);
-        return null;
-    }
-}
-
-// Fonction pour mettre à jour le fichier JSON
-async function updateJsonFile(newGame) {
-    const jsonResponse = await fetch(
-        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${jsonPath}`,
-        {
-            headers: { Authorization: `token ${githubToken}` },
-        }
-    );
-
-    if (!jsonResponse.ok) {
-        console.error("Erreur lors de la récupération du JSON", jsonResponse.statusText);
-        return false;
-    }
-
-    const jsonData = await jsonResponse.json();
-    const games = JSON.parse(atob(jsonData.content));
-
-    // Vérifiez si le jeu existe déjà
-    const existingGame = games.find(
-        (game) =>
-            game.name.toLowerCase() === newGame.name.toLowerCase() &&
-            game.platform === newGame.platform
+    // 3. Récupérer le fichier JSON depuis GitHub
+    const gamesJson = await getJsonFromGitHub("data/games.json");
+    const existingGame = gamesJson.find(
+      (game) => game.name === name && game.platform === platform
     );
 
     if (existingGame) {
-        Object.assign(existingGame, newGame); // Mise à jour
+      // Mise à jour du jeu existant
+      existingGame.description = description;
+      existingGame.download_url = downloadUrl;
+      existingGame.icon_url = iconPath;
     } else {
-        games.push(newGame); // Ajout d'un nouveau jeu
+      // Ajouter un nouveau jeu
+      gamesJson.push({
+        name,
+        platform,
+        description,
+        download_url: downloadUrl,
+        icon_url: iconPath,
+      });
     }
 
-    const updatedContent = encodeBase64Unicode(JSON.stringify(games, null, 2));
+    // 4. Sauvegarder le fichier JSON mis à jour sur GitHub
+    await uploadToGitHub("data/games.json", JSON.stringify(gamesJson, null, 2));
 
-    const updateResponse = await fetch(
-        `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${jsonPath}`,
-        {
-            method: "PUT",
-            headers: {
-                Authorization: `token ${githubToken}`,
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                message: `Mise à jour des jeux`,
-                content: updatedContent,
-                sha: jsonData.sha,
-                branch: branchName,
-            }),
-        }
-    );
-
-    return updateResponse.ok;
+    alert("Le jeu a été ajouté avec succès !");
+  } catch (error) {
+    console.error("Erreur lors de l'ajout du jeu :", error);
+    alert(`Une erreur s'est produite : ${error.message}`);
+  }
 }
 
-// Obtenir l'extension du fichier
-function getFileExtension(filename) {
-    return filename.split(".").pop();
+// Fonction pour convertir un fichier en Base64
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result.split(",")[1]);
+    reader.onerror = (error) => reject(error);
+    reader.readAsDataURL(file);
+  });
+}
+
+// Fonction pour récupérer un fichier JSON depuis GitHub
+async function getJsonFromGitHub(path) {
+  const url = `https://api.github.com/repos/{Nouredine227}/{Nouredin-Cie}/contents/${path}`;
+  const response = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${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}`,
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Impossible de récupérer le fichier JSON.");
+  }
+
+  const data = await response.json();
+  return JSON.parse(atob(data.content));
+}
+
+// Fonction pour télécharger un fichier sur GitHub
+async function uploadToGitHub(path, content) {
+  const url = `https://api.github.com/repos/{Nouredine227}/{Nouredine-Cie}/contents/${path}`;
+  const existingFile = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${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}`,
+    },
+  });
+
+  let sha = null;
+  if (existingFile.ok) {
+    const fileData = await existingFile.json();
+    sha = fileData.sha;
+  }
+
+  const response = await fetch(url, {
+    method: "PUT",
+    headers: {
+      Authorization: `Bearer ${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}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      message: `Add or update ${path}`,
+      content: btoa(content),
+      sha: sha || undefined,
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Impossible de télécharger le fichier sur GitHub.");
+  }
 }
