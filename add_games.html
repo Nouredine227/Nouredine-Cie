@@ -3,31 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ajouter un jeu</title>
+  <title>Ajouter un Jeu</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Ajouter un Nouveau Jeu</h1>
-    <form id="add-game-form">
-      <label for="game-name">Nom du jeu :</label>
-      <input type="text" id="game-name" placeholder="Nom du jeu" required>
+  <div class="add-game-container">
+    <h1 class="title">Ajouter un Nouveau Jeu</h1>
+    <form id="add-game-form" class="add-game-form">
+      <div class="form-group">
+        <label for="game-name">Nom du Jeu :</label>
+        <input type="text" id="game-name" placeholder="Nom du jeu" required>
+      </div>
 
-      <label for="game-platform">Plateforme :</label>
-      <input type="text" id="game-platform" placeholder="Ex: Android, PC" required>
+      <div class="form-group">
+        <label for="game-platform">Plateforme :</label>
+        <select id="game-platform" required>
+          <option value="Android">Android</option>
+          <option value="PC">PC</option>
+          <option value="PS">PlayStation</option>
+          <option value="ISO">ISO</option>
+        </select>
+      </div>
 
-      <label for="game-description">Description :</label>
-      <textarea id="game-description" placeholder="Description du jeu" required></textarea>
+      <div class="form-group">
+        <label for="game-description">Description :</label>
+        <textarea id="game-description" placeholder="Description du jeu" required></textarea>
+      </div>
 
-      <label for="game-download-url">URL de téléchargement :</label>
-      <input type="url" id="game-download-url" placeholder="Lien vers le fichier" required>
+      <div class="form-group">
+        <label for="game-download-url">URL de Téléchargement :</label>
+        <input type="url" id="game-download-url" placeholder="Lien de téléchargement" required>
+      </div>
 
-      <label for="game-icon">Icône du jeu :</label>
-      <input type="file" id="game-icon" accept="image/*" required>
+      <div class="form-group">
+        <label for="game-icon">Icône du Jeu :</label>
+        <input type="file" id="game-icon" accept="image/*" required>
+      </div>
 
-      <button type="button" onclick="addGame()">Publier le jeu</button>
+      <button type="button" class="btn-submit" onclick="addGame()">Publier</button>
     </form>
   </div>
+
   <script src="js/add_game.js"></script>
 </body>
 </html>
