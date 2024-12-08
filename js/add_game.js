@@ -1,3 +1,11 @@
+// Configuration GitHub (à modifier une seule fois)
+const GITHUB_USERNAME = "Nouredine227";
+const GITHUB_REPO = "Nouredine-Cie";
+const GITHUB_TOKEN = "your_github_token";
+
+// URL API GitHub (base)
+const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/`;
+
 async function addGame() {
   const name = document.getElementById("game-name").value.trim();
   const platform = document.getElementById("game-platform").value.trim();
@@ -10,16 +18,16 @@ async function addGame() {
     return;
   }
 
-  // 1. Renommer l'icône
+  // Renommer l'icône
   const iconName = `${name.replace(/\s+/g, "_")}.${iconFile.name.split('.').pop()}`; // Nom formaté
   const iconPath = `assets/images/${iconName}`;
 
   try {
-    // 2. Télécharger l'icône sur GitHub
+    // Télécharger l'icône sur GitHub
     const iconBase64 = await fileToBase64(iconFile);
     await uploadToGitHub(iconPath, iconBase64);
 
-    // 3. Récupérer le fichier JSON depuis GitHub
+    // Récupérer le fichier JSON
     const gamesJson = await getJsonFromGitHub("data/games.json");
     const existingGame = gamesJson.find(
       (game) => game.name === name && game.platform === platform
@@ -41,7 +49,7 @@ async function addGame() {
       });
     }
 
-    // 4. Sauvegarder le fichier JSON mis à jour sur GitHub
+    // Sauvegarder le fichier JSON mis à jour sur GitHub
     await uploadToGitHub("data/games.json", JSON.stringify(gamesJson, null, 2));
 
     alert("Le jeu a été ajouté avec succès !");
@@ -51,7 +59,7 @@ async function addGame() {
   }
 }
 
-// Fonction pour convertir un fichier en Base64
+// Convertir un fichier en Base64
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -61,12 +69,12 @@ function fileToBase64(file) {
   });
 }
 
-// Fonction pour récupérer un fichier JSON depuis GitHub
+// Récupérer un fichier JSON depuis GitHub
 async function getJsonFromGitHub(path) {
-  const url = `https://api.github.com/repos/{Nouredine227}/{Nouredin-Cie}/contents/${path}`;
+  const url = `${GITHUB_API_URL}${path}`;
   const response = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${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}`,
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
     },
   });
 
@@ -78,12 +86,12 @@ async function getJsonFromGitHub(path) {
   return JSON.parse(atob(data.content));
 }
 
-// Fonction pour télécharger un fichier sur GitHub
+// Télécharger un fichier sur GitHub
 async function uploadToGitHub(path, content) {
-  const url = `https://api.github.com/repos/{Nouredine227}/{Nouredine-Cie}/contents/${path}`;
+  const url = `${GITHUB_API_URL}${path}`;
   const existingFile = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${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}`,
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
     },
   });
 
@@ -96,7 +104,7 @@ async function uploadToGitHub(path, content) {
   const response = await fetch(url, {
     method: "PUT",
     headers: {
-      Authorization: `Bearer ${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}`,
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
