@@ -63,10 +63,10 @@ function fileToBase64(file) {
 
 // Fonction pour récupérer un fichier JSON depuis GitHub
 async function getJsonFromGitHub(path) {
-  const url = `https://api.github.com/repos/{your_username}/{your_repo}/contents/${path}`;
+  const url = `https://api.github.com/repos/{Nouredine227}/{Nouredin-Cie}/contents/${path}`;
   const response = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${your_github_token}`,
+      Authorization: `Bearer ${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}`,
     },
   });
 
@@ -80,10 +80,10 @@ async function getJsonFromGitHub(path) {
 
 // Fonction pour télécharger un fichier sur GitHub
 async function uploadToGitHub(path, content) {
-  const url = `https://api.github.com/repos/{your_username}/{your_repo}/contents/${path}`;
+  const url = `https://api.github.com/repos/{Nouredine227}/{Nouredine-Cie}/contents/${path}`;
   const existingFile = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${your_github_token}`,
+      Authorization: `Bearer ${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}`,
     },
   });
 
@@ -96,7 +96,7 @@ async function uploadToGitHub(path, content) {
   const response = await fetch(url, {
     method: "PUT",
     headers: {
-      Authorization: `Bearer ${your_github_token}`,
+      Authorization: `Bearer ${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}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
