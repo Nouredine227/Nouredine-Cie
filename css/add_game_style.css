@@ -1,0 +1,142 @@
+/* Formulaire spécifique à la page d'ajout de jeu */
+.game-form {
+  background: rgba(0, 0, 0, 0.6); /* Fond sombre semi-transparent */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.game-form label {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #ffffff; /* Texte en blanc */
+}
+
+.game-form input, 
+.game-form textarea, 
+.game-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #cccccc; /* Bordure grise légère */
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1); /* Fond légèrement transparent */
+  color: #ffffff; /* Texte en blanc */
+  font-size: 1rem;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.game-form input::placeholder,
+.game-form textarea::placeholder {
+  color: #bbbbbb; /* Texte des placeholders */
+}
+
+.game-form input:focus, 
+.game-form textarea:focus, 
+.game-form select:focus {
+  outline: none;
+  border-color: #00ccff; /* Bordure bleue futuriste */
+  box-shadow: 0 0 5px #00ccff;
+}
+
+.game-form button {
+  width: 100%;
+  padding: 15px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background: linear-gradient(45deg, #0066ff, #00ccff);
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.game-form button:hover {
+  background: linear-gradient(45deg, #0052cc, #0099cc);
+}
+
+/* Section pour positionner le formulaire au centre */
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1); /* Légère transparence */
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Styles pour l'en-tête */
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8); /* Fond sombre */
+  padding: 10px 20px;
+  color: white;
+  border-bottom: 2px solid #00ccff; /* Ligne futuriste */
+}
+
+.header-container h1 {
+  margin: 0;
+  font-size: 2rem;
+  color: #00ccff; /* Titre en bleu futuriste */
+}
+
+.header-container nav a {
+  font-size: 1rem;
+  color: #00ccff; /* Lien en bleu futuriste */
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.header-container nav a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+/* Pied de page */
+footer {
+  text-align: center;
+  padding: 10px 0;
+  background: rgba(0, 0, 0, 0.8); /* Fond sombre */
+  color: #ffffff;
+  border-top: 2px solid #00ccff; /* Ligne futuriste */
+  margin-top: 20px;
+}
+
+/* Mode sombre et clair */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+body.light-mode {
+  background-color: #f9f9f9;
+  color: #121212;
+}
+
+body.light-mode .game-form {
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .game-form input,
+body.light-mode .game-form textarea,
+body.light-mode .game-form select {
+  background: #f9f9f9;
+  color: #121212;
+  border-color: #cccccc;
+}
+
+body.light-mode .game-form button {
+  background: linear-gradient(45deg, #0066ff, #0099ff);
+}
+
+body.light-mode footer {
+  background: #f9f9f9;
+  color: #121212;
+  border-top-color: #0066ff;
+}
