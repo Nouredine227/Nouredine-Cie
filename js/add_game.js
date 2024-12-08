@@ -1,7 +1,7 @@
 // Configuration GitHub (à modifier une seule fois)
 const GITHUB_USERNAME = "Nouredine227";
 const GITHUB_REPO = "Nouredine-Cie";
-const GITHUB_TOKEN = "your_github_token";
+const GITHUB_TOKEN = "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";
 
 // URL API GitHub (base)
 const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/`;
