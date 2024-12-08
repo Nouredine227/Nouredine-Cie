@@ -1,10 +1,10 @@
-// Configuration GitHub (à modifier une seule fois)
-const GITHUB_USERNAME = "Nouredine227";
-const GITHUB_REPO = "Nouredine-Cie";
-const GITHUB_TOKEN = "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";
-
-// URL API GitHub (base)
-const GITHUB_API_URL = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/`;
+// Configuration GitHub - Remplissez une fois ici
+const githubConfig = {
+  username: "Nouredine227",
+  repo: "Nouredine-Cie",
+  branch: "main",
+  token: "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",
+};
 
 async function addGame() {
   const name = document.getElementById("game-name").value.trim();
@@ -14,52 +14,48 @@ async function addGame() {
   const iconFile = document.getElementById("game-icon").files[0];
 
   if (!name || !platform || !description || !downloadUrl || !iconFile) {
-    alert("Veuillez remplir tous les champs !");
+    alert("Veuillez remplir tous les champs.");
     return;
   }
 
-  // Renommer l'icône
-  const iconName = `${name.replace(/\s+/g, "_")}.${iconFile.name.split('.').pop()}`; // Nom formaté
-  const iconPath = `assets/images/${iconName}`;
-
   try {
-    // Télécharger l'icône sur GitHub
+    // Étape 1 : Télécharger l'icône
+    const iconPath = `assets/images/${name.replace(/\s+/g, "_")}.${iconFile.name.split('.').pop()}`;
     const iconBase64 = await fileToBase64(iconFile);
-    await uploadToGitHub(iconPath, iconBase64);
+    await updateGitHubFile(iconPath, iconBase64);
 
-    // Récupérer le fichier JSON
-    const gamesJson = await getJsonFromGitHub("data/games.json");
-    const existingGame = gamesJson.find(
-      (game) => game.name === name && game.platform === platform
-    );
+    // Étape 2 : Ajouter les informations au fichier JSON
+    const gamesDataPath = "data/games.json";
+    const gamesData = await fetchGitHubFile(gamesDataPath);
+    const games = JSON.parse(atob(gamesData.content));
 
+    // Vérifier les doublons
+    const existingGame = games.find((g) => g.name === name && g.platform === platform);
     if (existingGame) {
-      // Mise à jour du jeu existant
-      existingGame.description = description;
-      existingGame.download_url = downloadUrl;
-      existingGame.icon_url = iconPath;
-    } else {
-      // Ajouter un nouveau jeu
-      gamesJson.push({
-        name,
-        platform,
-        description,
-        download_url: downloadUrl,
-        icon_url: iconPath,
-      });
+      alert("Ce jeu existe déjà pour cette plateforme !");
+      return;
     }
 
-    // Sauvegarder le fichier JSON mis à jour sur GitHub
-    await uploadToGitHub("data/games.json", JSON.stringify(gamesJson, null, 2));
+    // Ajouter le nouveau jeu
+    games.push({
+      name,
+      platform,
+      description,
+      download_url: downloadUrl,
+      icon_url: iconPath,
+    });
 
-    alert("Le jeu a été ajouté avec succès !");
+    // Mettre à jour le fichier JSON
+    await updateGitHubFile(gamesDataPath, btoa(JSON.stringify(games, null, 2)));
+
+    alert("Jeu ajouté avec succès !");
+    location.reload();
   } catch (error) {
-    console.error("Erreur lors de l'ajout du jeu :", error);
-    alert(`Une erreur s'est produite : ${error.message}`);
+    console.error(error);
+    alert("Une erreur s'est produite lors de l'ajout du jeu.");
   }
 }
 
-// Convertir un fichier en Base64
 function fileToBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -69,52 +65,30 @@ function fileToBase64(file) {
   });
 }
 
-// Récupérer un fichier JSON depuis GitHub
-async function getJsonFromGitHub(path) {
-  const url = `${GITHUB_API_URL}${path}`;
-  const response = await fetch(url, {
+async function fetchGitHubFile(path) {
+  const response = await fetch(`https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}/contents/${path}?ref=${githubConfig.branch}`, {
     headers: {
-      Authorization: `Bearer ${GITHUB_TOKEN}`,
+      Authorization: `Bearer ${githubConfig.token}`,
     },
   });
-
-  if (!response.ok) {
-    throw new Error("Impossible de récupérer le fichier JSON.");
-  }
-
-  const data = await response.json();
-  return JSON.parse(atob(data.content));
+  return response.json();
 }
 
-// Télécharger un fichier sur GitHub
-async function uploadToGitHub(path, content) {
-  const url = `${GITHUB_API_URL}${path}`;
-  const existingFile = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${GITHUB_TOKEN}`,
-    },
-  });
+async function updateGitHubFile(path, content) {
+  const fileData = await fetchGitHubFile(path).catch(() => null);
+  const sha = fileData ? fileData.sha : undefined;
 
-  let sha = null;
-  if (existingFile.ok) {
-    const fileData = await existingFile.json();
-    sha = fileData.sha;
-  }
-
-  const response = await fetch(url, {
+  await fetch(`https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}/contents/${path}`, {
     method: "PUT",
     headers: {
-      Authorization: `Bearer ${GITHUB_TOKEN}`,
+      Authorization: `Bearer ${githubConfig.token}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      message: `Add or update ${path}`,
-      content: btoa(content),
-      sha: sha || undefined,
+      message: `Ajout ou mise à jour du fichier ${path}`,
+      content,
+      sha,
+      branch: githubConfig.branch,
     }),
   });
-
-  if (!response.ok) {
-    throw new Error("Impossible de télécharger le fichier sur GitHub.");
-  }
 }
