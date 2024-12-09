@@ -147,3 +147,39 @@ header {
   padding: 0 15px;
   box-sizing: border-box;
 }
+
+.organization {
+    margin-bottom: 20px;
+}
+
+.organization h2 {
+    font-size: 1.5em;
+    color: #444;
+}
+
+.organization-logo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.details summary {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.details summary:hover {
+    text-decoration: underline;
+}
+
+.details p, .details ul {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+  }
