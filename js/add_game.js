@@ -1,42 +1,50 @@
-// Configuration GitHub - Remplissez une fois ici
-const githubConfig = {
-  username: "Nouredine227",
-  repo: "Nouredine-Cie",
-  branch: "main",
-  token: "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",
-};
+document.getElementById("game-form").addEventListener("submit", async (event) => {
+  event.preventDefault();
 
-async function addGame() {
   const name = document.getElementById("game-name").value.trim();
-  const platform = document.getElementById("game-platform").value.trim();
+  const platform = document.getElementById("game-platform").value;
   const description = document.getElementById("game-description").value.trim();
   const downloadUrl = document.getElementById("game-download-url").value.trim();
-  const iconFile = document.getElementById("game-icon").files[0];
+  const icon = document.getElementById("game-icon").files[0];
 
-  if (!name || !platform || !description || !downloadUrl || !iconFile) {
-    alert("Veuillez remplir tous les champs.");
+  // Vérification des champs
+  if (!name || !platform || !description || !downloadUrl || !icon) {
+    alert("Veuillez remplir tous les champs avant de publier.");
     return;
   }
 
+  // Configuration GitHub
+  const GITHUB_REPO = "Nouredine227/Nouredine-Cie";
+  const GITHUB_TOKEN = "VotreTokenGitHub";
+  const API_URL = `https://api.github.com/repos/${GITHUB_REPO}/contents/data/games.json`;
+
   try {
-    // Étape 1 : Télécharger l'icône
-    const iconPath = `assets/images/${name.replace(/\s+/g, "_")}.${iconFile.name.split('.').pop()}`;
-    const iconBase64 = await fileToBase64(iconFile);
-    await updateGitHubFile(iconPath, iconBase64);
+    // 1. Chargement du fichier JSON existant
+    const response = await fetch(API_URL, {
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+      },
+    });
 
-    // Étape 2 : Ajouter les informations au fichier JSON
-    const gamesDataPath = "data/games.json";
-    const gamesData = await fetchGitHubFile(gamesDataPath);
-    const games = JSON.parse(atob(gamesData.content));
+    if (!response.ok) throw new Error("Impossible de charger le fichier JSON.");
 
-    // Vérifier les doublons
-    const existingGame = games.find((g) => g.name === name && g.platform === platform);
+    const data = await response.json();
+    const games = JSON.parse(atob(data.content)); // Décodage du contenu JSON
+
+    // 2. Vérification des doublons
+    const existingGame = games.find(
+      (game) => game.name === name && game.platform === platform
+    );
     if (existingGame) {
-      alert("Ce jeu existe déjà pour cette plateforme !");
+      alert("Un jeu avec le même nom et la même plateforme existe déjà.");
       return;
     }
 
-    // Ajouter le nouveau jeu
+    // 3. Téléchargement de l'icône
+    const iconPath = `assets/images/${name.replace(/\s+/g, "_")}.${icon.name.split(".").pop()}`;
+    await uploadFileToGitHub(iconPath, icon, GITHUB_REPO, GITHUB_TOKEN);
+
+    // 4. Ajout du nouveau jeu
     games.push({
       name,
       platform,
@@ -45,50 +53,56 @@ async function addGame() {
       icon_url: iconPath,
     });
 
-    // Mettre à jour le fichier JSON
-    await updateGitHubFile(gamesDataPath, btoa(JSON.stringify(games, null, 2)));
+    const updatedContent = btoa(JSON.stringify(games, null, 2)); // Encodage en base64
 
-    alert("Jeu ajouté avec succès !");
-    location.reload();
+    // 5. Mise à jour du fichier JSON
+    await fetch(API_URL, {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${GITHUB_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        message: `Ajout du jeu ${name}`,
+        content: updatedContent,
+        sha: data.sha, // SHA du fichier existant
+      }),
+    });
+
+    alert("Le jeu a été ajouté avec succès !");
   } catch (error) {
-    console.error(error);
-    alert("Une erreur s'est produite lors de l'ajout du jeu.");
+    console.error("Erreur lors de l'ajout :", error);
+    alert("Une erreur s'est produite lors de la publication du jeu.");
   }
-}
+});
 
-function fileToBase64(file) {
+// Fonction pour télécharger l'icône sur GitHub
+async function uploadFileToGitHub(path, file, repo, token) {
+  const reader = new FileReader();
+  reader.readAsDataURL(file);
   return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result.split(",")[1]);
-    reader.onerror = (error) => reject(error);
-    reader.readAsDataURL(file);
-  });
-}
-
-async function fetchGitHubFile(path) {
-  const response = await fetch(`https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}/contents/${path}?ref=${githubConfig.branch}`, {
-    headers: {
-      Authorization: `Bearer ${githubConfig.token}`,
-    },
-  });
-  return response.json();
-}
-
-async function updateGitHubFile(path, content) {
-  const fileData = await fetchGitHubFile(path).catch(() => null);
-  const sha = fileData ? fileData.sha : undefined;
-
-  await fetch(`https://api.github.com/repos/${githubConfig.username}/${githubConfig.repo}/contents/${path}`, {
-    method: "PUT",
-    headers: {
-      Authorization: `Bearer ${githubConfig.token}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      message: `Ajout ou mise à jour du fichier ${path}`,
-      content,
-      sha,
-      branch: githubConfig.branch,
-    }),
+    reader.onload = async () => {
+      const base64File = reader.result.split(",")[1];
+      try {
+        const response = await fetch(
+          `https://api.github.com/repos/${repo}/contents/${path}`,
+          {
+            method: "PUT",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              message: `Ajout de l'icône ${file.name}`,
+              content: base64File,
+            }),
+          }
+        );
+        if (!response.ok) throw new Error("Échec du téléchargement de l'icône.");
+        resolve();
+      } catch (error) {
+        reject(error);
+      }
+    };
   });
 }
