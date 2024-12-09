@@ -1,0 +1,24 @@
+[
+    {
+        "name": "CNSP",
+        "description": "Le Conseil National pour la Sauvegarde de la Patrie (CNSP) est une organisation dédiée à garantir la stabilité et la sécurité nationale.",
+        "highlights": [
+            "Protection des citoyens",
+            "Promotion de l'unité nationale",
+            "Développement durable"
+        ],
+        "image_url": "https://example.com/image_cnsp.jpg",
+        "donation_url": "https://example.com/dons_cnsp"
+    },
+    {
+        "name": "Goal Niger",
+        "description": "Goal Niger est une organisation humanitaire engagée dans l'amélioration des conditions de vie au Niger.",
+        "highlights": [
+            "Éducation",
+            "Santé",
+            "Aide alimentaire"
+        ],
+        "image_url": "https://example.com/image_goal_niger.jpg",
+        "donation_url": "https://example.com/dons_goal_niger"
+    }
+]
