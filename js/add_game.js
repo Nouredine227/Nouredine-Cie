@@ -15,7 +15,7 @@ document.getElementById("game-form").addEventListener("submit", async (event) =>
 
   // Configuration GitHub
   const GITHUB_REPO = "Nouredine227/Nouredine-Cie";
-  const GITHUB_TOKEN = "VotreTokenGitHub";
+  const GITHUB_TOKEN = "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";
   const API_URL = `https://api.github.com/repos/${GITHUB_REPO}/contents/data/games.json`;
 
   try {
