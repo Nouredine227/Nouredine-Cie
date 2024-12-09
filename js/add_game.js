@@ -41,7 +41,7 @@ document.getElementById("game-form").addEventListener("submit", async (event) =>
     }
 
     // 3. Téléchargement de l'icône
-    const iconPath = `assets/images/${name.replace(/\s+/g, "_")}.${icon.name.split(".").pop()}`;
+    const iconPath = `assets/icons/${name.replace(/\s+/g, "_")}.${icon.name.split(".").pop()}`;
     await uploadFileToGitHub(iconPath, icon, GITHUB_REPO, GITHUB_TOKEN);
 
     // 4. Ajout du nouveau jeu
