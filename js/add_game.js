@@ -3,7 +3,7 @@ const githubConfig = {
   username: "Nouredine227",
   repo: "Nouredine-Cie",
   branch: "main",
-  token: "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",
+  token: "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",
 };
 
 async function addGame() {
@@ -20,7 +20,7 @@ async function addGame() {
 
   try {
     // Étape 1 : Télécharger l'icône
-    const iconPath = `assets/images/${name.replace(/\s+/g, "_")}.${iconFile.name.split('.').pop()}`;
+    const iconPath = `assets/icons/${name.replace(/\s+/g, "_")}.${iconFile.name.split('.').pop()}`;
     const iconBase64 = await fileToBase64(iconFile);
     await updateGitHubFile(iconPath, iconBase64);
 
