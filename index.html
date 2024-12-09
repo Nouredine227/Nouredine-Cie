@@ -3,34 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>À propos</title>
-    <link rel="stylesheet" href="css/about.css">
-    <script src="js/about.js" defer></script>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/theme-switcher.js" defer></script>
 </head>
 <body>
-<header>
+<header class="header">
     <div class="logo-container">
         <img src="icons/logo.jpg" alt="Logo" class="logo">
     </div>
-    <h1 class="page-title">À propos de nous</h1>
+    <h1>Bienvenue sur notre site</h1>
+    <nav class="navbar">
+        <ul>
+            <li><a href="about.html">À propos</a></li>
+            <li><a href="games.html">Jeux</a></li>
+            <li><a href="weapons.html">Armes</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle">Mode Sombre</button>
 </header>
-<main>
-    <!-- Informations sur vous -->
-    <section class="company-info">
-        <h2>Qui sommes-nous ?</h2>
-        <p>
-            Bienvenue sur notre site officiel. Nous sommes une entreprise passionnée par le développement de jeux vidéo et de technologies interactives.
-        </p>
-        <p>
-            Nos valeurs : créativité, engagement, et excellence. Nous croyons en l'impact positif du jeu et de la technologie dans la vie des gens.
-        </p>
-        <a href="contact.html" class="btn">Nous contacter</a>
+<main class="main-content">
+    <section class="intro">
+        <h2>Découvrez nos dernières créations</h2>
+        <p>Nous développons des jeux et des technologies interactives pour enrichir votre expérience numérique.</p>
     </section>
-
-    <!-- Conteneurs pour les informations chargées dynamiquement -->
-    <section id="organization-info" class="organization-info">
-        <!-- Contenu chargé via JavaScript -->
+    <section class="featured-content">
+        <div class="video-container">
+            <iframe 
+                width="560" 
+                height="315" 
+                src="https://www.youtube.com/embed/Pkl9ohIVh5I" 
+                title="Vidéo YouTube" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
     </section>
 </main>
+<footer class="footer">
+    <p>&copy; 2024 Notre entreprise. Tous droits réservés.</p>
+</footer>
 </body>
 </html>
