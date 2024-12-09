@@ -122,6 +122,34 @@ nav ul li a:hover::after {
     background-color: #bb00ff;
 }
 
+/* Conteneur de l'icône */
+.logo-container {
+  position: absolute; /* Positionnement en haut à gauche */
+  top: 10px;
+  left: 10px;
+  z-index: 100; /* Toujours au-dessus du contenu principal */
+}
+
+/* Icône circulaire */
+.logo {
+  width: 50px; /* Taille ajustable */
+  height: 50px;
+  border-radius: 50%; /* Rendre l'image circulaire */
+  object-fit: cover; /* Assurer que l'image garde ses proportions */
+  border: 2px solid #fff; /* Bordure blanche pour séparer du fond */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Ombre pour un meilleur visuel */
+}
+
+/* Ajustements globaux pour éviter les chevauchements */
+header {
+  height: 70px; /* Réserver un espace pour le logo */
+  display: flex;
+  align-items: center;
+  background-color: #1a1a1a; /* Couleur de fond (modifiables) */
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
 /* Grid layout for cards (games and weapons) */
 .cards-container {
     display: grid;
