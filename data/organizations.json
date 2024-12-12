@@ -7,7 +7,7 @@
             "Promotion de l'unité nationale",
             "Développement durable"
         ],
-        "image_url": "https://example.com/image_cnsp.jpg",
+        "image_url": "assets/icons/cnsp.jpg",
         "donation_url": "https://example.com/dons_cnsp"
     },
     {
@@ -16,7 +16,10 @@
         "highlights": [
             "Éducation",
             "Santé",
-            "Aide alimentaire"
+            "Aide alimentaire",
+            "En 2023, les programmes de GOAL au Niger ont touché plus de 348 000 personnes.",
+            "L'année dernière, plus de 95 000 personnes ont bénéficié des programmes de santé et d'intervention de GOAL.",
+            "Plus de 160 000 personnes ont participé aux projets de sécurité alimentaire et de nutrition curative de GOAL."
         ],
         "image_url": "assets/icons/goal.jpg",
         "donation_url": "https://www.goalglobal.org/donate/"
