@@ -18,7 +18,7 @@
             "Santé",
             "Aide alimentaire"
         ],
-        "image_url": "https://example.com/image_goal_niger.jpg",
-        "donation_url": "https://example.com/dons_goal_niger"
+        "image_url": "assets/icons/goal.jpg",
+        "donation_url": "https://www.goalglobal.org/donate/"
     }
 ]
