@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const orgContainer = document.getElementById('organization-info');
-    const dataUrl = 'https://example.com/organizations.json'; // URL du fichier JSON contenant les données
+    const dataUrl = 'data/organizations.json'; // URL du fichier JSON contenant les données
 
     try {
         // Chargement des données
