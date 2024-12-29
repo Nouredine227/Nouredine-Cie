@@ -16,7 +16,7 @@ fetch("data/games.json")
                     <h3>${game.name}</h3>
                     <p>${game.description}</p>
                     <p>Plateforme: ${game.platform}</p>
-                    <a href="${game.downloadLink}" target="_blank">Télécharger</a>
+                    <a href="${game.downloadLink}" target="_blank" class="btn">Télécharger</a>
                 `;
                 gameList.appendChild(gameDiv);
             });
