@@ -12,7 +12,7 @@ fetch("data/games.json")
                 const gameDiv = document.createElement("div");
                 gameDiv.className = "game-item";
                 gameDiv.innerHTML = `
-                    <img src="assets/icons/${game.icon}" alt="${game.name}">
+                    <img src="assets/icons/${game.icon}" alt="${game.name}" width="104" height="142">
                     <h3>${game.name}</h3>
                     <p>${game.description}</p>
                     <p>Plateforme: ${game.platform}</p>
