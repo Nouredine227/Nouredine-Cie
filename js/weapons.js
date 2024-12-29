@@ -12,10 +12,10 @@ fetch("data/weapons.json")
                 const weaponDiv = document.createElement("div");
                 weaponDiv.className = "weapon-item";
                 weaponDiv.innerHTML = `
-                    <img src="assets/icons/${weapon.icon}" alt="${weapon.name}">
+                    <img src="assets/icons/${weapon.icon}" alt="${weapon.name}" width="104" height="142">
                     <h3>${weapon.name}</h3>
                     <p>${weapon.description}</p>
-                    <a href="${weapon.downloadLink}" target="_blank">Télécharger</a>
+                    <a href="${weapon.downloadLink}" target="_blank" class="btn">Télécharger</a>
                 `;
                 weaponList.appendChild(weaponDiv);
             });
