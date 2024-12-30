@@ -12,7 +12,7 @@ fetch("data/images.json")
                 const weaponDiv = document.createElement("div");
                 weaponDiv.className = "weapon-item";
                 weaponDiv.innerHTML = `
-                    <img src="assets/icons/${weapon.icon}" alt="${weapon.name}" width="104" height="142">
+                    <img src="assets/icons/${weapon.icon}" alt="${weapon.name}" width="360" height="200">
                     <h3>${weapon.name}</h3>
                     <p>${weapon.description}</p>
                     <a href="${weapon.downloadLink}" target="_blank" class="btn">Télécharger</a>
