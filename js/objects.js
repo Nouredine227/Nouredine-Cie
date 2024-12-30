@@ -35,6 +35,6 @@ fetch("data/objets.json")
         searchInput.addEventListener("input", filterObjects);
         filterSelect.addEventListener("change", filterObjects);
 
-        displayWeapons(objects);
+        displayObjects(objects);
     })
     .catch(error => console.error("Erreur de chargement des Items :", error));
