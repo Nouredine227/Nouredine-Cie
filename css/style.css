@@ -91,7 +91,7 @@ nav ul li a:hover::after {
     justify-content: center;
     align-items: center;
     height: 80vh;
-    background: url('assets/gifs/hero-background.gif') no-repeat center center;
+    background: url('assets/gifs/background-stars.gif') no-repeat center center;
     background-size: cover;
     text-align: center;
 }
@@ -110,7 +110,7 @@ nav ul li a:hover::after {
 
 /* Button styles */
 .btn {
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: #42aaff;
     color: #fff;
     text-decoration: none;
@@ -287,7 +287,7 @@ footer a:hover {
 }
 
 .dark-mode .hero {
-    background: url('assets/images/background-dark.gif') center center no-repeat;
+    background: url('assets/gifs/background-stars.gif') center center no-repeat;
     background-size: cover;
 }
 
