@@ -1,4 +1,4 @@
-fetch("data/weapons.json")
+fetch("data/images.json")
     .then(response => response.json())
     .then(data => {
         const weapons = data.weapons;
