@@ -1,23 +1,23 @@
 fetch("data/images.json")
     .then(response => response.json())
     .then(data => {
-        const weapons = data.weapons;
-        const weaponList = document.getElementById("weapon-list");
-        const searchInput = document.getElementById("weapon-search");
-        const filterSelect = document.getElementById("weapon-filter");
+        const objects = data.objects;
+        const objetsList= document.getElementById("object-list");
+        const searchInput = document.getElementById("object-search");
+        const filterSelect = document.getElementById("object-filter");
 
-        function displayWeapons(filteredWeapons) {
-            weaponList.innerHTML = "";
-            filteredWeapons.forEach(weapon => {
-                const weaponDiv = document.createElement("div");
-                weaponDiv.className = "weapon-item";
-                weaponDiv.innerHTML = `
-                    <img src="assets/icons/${weapon.icon}" alt="${weapon.name}" width="360" height="200">
-                    <h3>${weapon.name}</h3>
-                    <p>${weapon.description}</p>
-                    <a href="${weapon.downloadLink}" target="_blank" class="btn">Télécharger</a>
+        function displayObjects(filteredObject) {
+            objectsList.innerHTML = "";
+            filteredWeapons.forEach(object => {
+                const objectDiv = document.createElement("div");
+                objectDiv.className = "object-item";
+                objectDiv.innerHTML = `
+                    <img src="assets/icons/${object.icon}" alt="${object.name}" width="360" height="200">
+                    <h3>${object}</h3>
+                    <p>${object.description}</p>
+                    <a href="${object.downloadLink}" target="_blank" class="btn">Télécharger</a>
                 `;
-                weaponList.appendChild(weaponDiv);
+                objectList.appendChild(objectDiv);
             });
         }
 
