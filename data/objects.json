@@ -2,7 +2,7 @@
     "objects": [
         {
             "name": "Fusil de sniper",
-            "filter": "long",
+            "filter": "FPS",
             "icon": "assault_heavy.jpg",
             "description": "Une arme puissante pour les combats à longue distance.",
             "downloadLink": "assets/icons/assault_heavy.jpg"
