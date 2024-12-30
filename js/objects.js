@@ -1,4 +1,4 @@
-fetch("data/images.json")
+fetch("data/objets.json")
     .then(response => response.json())
     .then(data => {
         const objects = data.objects;
@@ -8,7 +8,7 @@ fetch("data/images.json")
 
         function displayObjects(filteredObject) {
             objectsList.innerHTML = "";
-            filteredWeapons.forEach(object => {
+            filteredObjects.forEach(object => {
                 const objectDiv = document.createElement("div");
                 objectDiv.className = "object-item";
                 objectDiv.innerHTML = `
@@ -21,20 +21,20 @@ fetch("data/images.json")
             });
         }
 
-        function filterWeapons() {
+        function filterObjects() {
             const searchTerm = searchInput.value.toLowerCase();
             const filterValue = filterSelect.value;
-            const filteredWeapons = weapons.filter(weapon => {
-                const matchesSearch = weapon.name.toLowerCase().includes(searchTerm);
-                const matchesFilter = filterValue === "all" || weapon.range === filterValue;
+            const filteredObjects = objects.filter(object => {
+                const matchesSearch = object.name.toLowerCase().includes(searchTerm);
+                const matchesFilter = filterValue === "all" || object.filter === filterValue;
                 return matchesSearch && matchesFilter;
             });
-            displayWeapons(filteredWeapons);
+            displayWeapons(filteredObjects);
         }
 
-        searchInput.addEventListener("input", filterWeapons);
-        filterSelect.addEventListener("change", filterWeapons);
+        searchInput.addEventListener("input", filterObjects);
+        filterSelect.addEventListener("change", filterObjects);
 
-        displayWeapons(weapons);
+        displayWeapons(objects);
     })
-    .catch(error => console.error("Erreur de chargement des armes :", error));
+    .catch(error => console.error("Erreur de chargement des Items :", error));
