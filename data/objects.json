@@ -1,12 +1,12 @@
 {
-    "weapons": [
+    "objects": [
         {
             "name": "Fusil de sniper",
             "range": "long",
             "fireRate": "FPS",
             "icon": "assault_heavy.jpg",
             "description": "Une arme puissante pour les combats à longue distance.",
-            "downloadLink": "https://example.com/sniper"
+            "downloadLink": "assets/icons/assault_heavy.jpg"
         }
     ]
 }
