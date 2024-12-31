@@ -1,4 +1,4 @@
-fetch("data/objets.json")
+fetch("data/objects.json")
     .then(response => response.json())
     .then(data => {
         const objects = data.objects;
