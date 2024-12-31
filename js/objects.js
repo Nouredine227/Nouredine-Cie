@@ -6,7 +6,7 @@ fetch("data/objects.json")
         const searchInput = document.getElementById("object-search");
         const filterSelect = document.getElementById("object-filter");
 
-        function displayObjects(filteredObject) {
+        function displayObjects(filteredObjects) {
             objectsList.innerHTML = "";
             filteredObjects.forEach(object => {
                 const objectDiv = document.createElement("div");
