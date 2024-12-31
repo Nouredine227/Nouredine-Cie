@@ -2,7 +2,7 @@ fetch("data/objects.json")
     .then(response => response.json())
     .then(data => {
         const objects = data.objects;
-        const objetsList= document.getElementById("object-list");
+        const objectsList= document.getElementById("object-list");
         const searchInput = document.getElementById("object-search");
         const filterSelect = document.getElementById("object-filter");
 
@@ -17,10 +17,10 @@ fetch("data/objects.json")
                     <p>${object.description}</p>
                     <a href="${object.downloadLink}" target="_blank" class="btn">Télécharger</a>
                 `;
-                objectList.appendChild(objectDiv);
+                objectsList.appendChild(objectDiv);
             });
         }
-
+        
         function filterObjects() {
             const searchTerm = searchInput.value.toLowerCase();
             const filterValue = filterSelect.value;
@@ -29,7 +29,7 @@ fetch("data/objects.json")
                 const matchesFilter = filterValue === "all" || object.filter === filterValue;
                 return matchesSearch && matchesFilter;
             });
-            displayWeapons(filteredObjects);
+            displayObjects(filteredObjects);
         }
 
         searchInput.addEventListener("input", filterObjects);
