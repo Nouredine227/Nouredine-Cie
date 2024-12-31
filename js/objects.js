@@ -13,7 +13,7 @@ fetch("data/objects.json")
                 objectDiv.className = "object-item";
                 objectDiv.innerHTML = `
                     <img src="assets/icons/${object.icon}" alt="${object.name}" width="360" height="200">
-                    <h3>${object}</h3>
+                    <h3>${object.name}</h3>
                     <p>${object.description}</p>
                     <a href="${object.downloadLink}" target="_blank" class="btn">Télécharger</a>
                 `;
