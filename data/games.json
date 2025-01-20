@@ -2,7 +2,7 @@
     "games": [
         {
             "name": "Store plublisher",
-            "platform": "Android",
+            "platform": "PC",
             "icon": "assaul_riffle.jpg",
             "description": "C'est un application de notre conception dans laquel les utilisateurs peuvent publier leurs produits gratuits pour se faire connaître du public (vous devez publier votre application sur internet et lorsque vous voulez l'ajouter vous devez juste mettre le lien derect du fichier et son format). En gros elle contient juste des liens vous publier quelques part et vous ajoutez le lien direct du fichier.",
             "downloadLink": "https://github.com/Nouredine227/Application_Store.git"
@@ -26,15 +26,14 @@
             "platform": "PC",
             "icon": "cod2.jpg",
             "description": "Tu commences en tant que simple soldat dans l'armée russe, puis tu joues plusieurs rôles. Pour la plupart de ces missions, tu te bats dans les déserts sablonneux d'Afrique du Nord aux côtés des Rats du désert contre les troupes du maréchal Rommel. La dernière mission de la campagne britannique t'envoie dans les maisons bombardées et les haies de Caen, en France. Enfin, tu incarneras un Américain lors du débarquement du jour J, mais pas sur la plage d'Omaha, tu escaladeras les falaises abruptes de la Pointe du Hoc en tant qu'artilleur avec les Army Essaie l'escalade avec l'artillerie et les tirs de mitrailleuses qui pleuvent sur toi. Tout simplement génial.",
-            "downloadLink" : "https://call-of-duty-2.fr.uptodown.com/windows/telecharger"
+            "downloadLink": "https://call-of-duty-2.fr.uptodown.com/windows/telecharger"
         },
-        
         {
-            "name": "Call Of Duty 2 : Demo",
+            "name": "Genshin Impact",
             "platform": "PC",
-            "icon": "cod2.jpg",
-            "description": "Tu commences en tant que simple soldat dans l'armée russe, puis tu joues plusieurs rôles. Pour la plupart de ces missions, tu te bats dans les déserts sablonneux d'Afrique du Nord aux côtés des Rats du désert contre les troupes du maréchal Rommel. La dernière mission de la campagne britannique t'envoie dans les maisons bombardées et les haies de Caen, en France. Enfin, tu incarneras un Américain lors du débarquement du jour J, mais pas sur la plage d'Omaha, tu escaladeras les falaises abruptes de la Pointe du Hoc en tant qu'artilleur avec les Army Essaie l'escalade avec l'artillerie et les tirs de mitrailleuses qui pleuvent sur toi. Tout simplement génial.",
-            "downloadLink" : "https://call-of-duty-2.fr.uptodown.com/windows/telecharger"
+            "icon": "genshin.jpg",
+            "description": "Genshin Impact est un jeu de rôle dans lequel tu explores un monde ouvert extraordinaire avec divers personnages. Vole dans le ciel et marche dans chaque ville, remplissant des missions et collectant des objets pour améliorer tes personnages en avançant. De plus tu peux jouer avec des utilisateurs sur d'autres plateformes telles que Android, PS4 et iOS.",
+            "downloadLink": ""
         }
     ]
 }
