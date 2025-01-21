@@ -34,6 +34,12 @@
             "icon": "genshin.jpg",
             "description": "Genshin Impact est un jeu de rôle dans lequel tu explores un monde ouvert extraordinaire avec divers personnages. Vole dans le ciel et marche dans chaque ville, remplissant des missions et collectant des objets pour améliorer tes personnages en avançant. De plus tu peux jouer avec des utilisateurs sur d'autres plateformes telles que Android, PS4 et iOS.",
             "downloadLink": "https://genshin-impact.fr.uptodown.com/windows/telecharger"
-        }
+        },
+        {
+            "name": "Age of Empire II : age of the kings",
+            "platform": "PC",
+            "icon": "genshin.jpg",
+            "description": "",
+            "downloadLink": ""
     ]
 }
